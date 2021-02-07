@@ -8,14 +8,14 @@ namespace CorporateClass
         {
             var Google = new Company("Google", new DateTime(1995, 1, 13));
 
-            Google.Hire("Sam");
-            Google.Hire("Kaitlyn");
-            Google.Hire("Dana");
-            Google.Hire("Bob the worst employee ever");
+            Google.Hire(new Employee("Sam"), "Full Stack Developer");
+            Google.Hire(new Employee("Pepper"), "Chief Dog Officer");
+            Google.Hire(new Employee("Creed"), "Quabbity Something");
 
             Google.GetEmployees();
 
-            Google.Fire("Bob the worst employee ever");
+            Google.Fire("Creed");
+
             Google.GetEmployees();
         }
     }

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace CorporateClass
 {
@@ -11,32 +11,28 @@ namespace CorporateClass
         public DateTime CreatedOn { get; }
 
         // Create a private property for holding a collection of current employees
-        List<string> Employees { get; set; } = new List<string>();
+        List<Employee> EmployeeList { get; set; } = new List<Employee>();
         // Create a method that allows a caller to add an employee
-        public void Hire(string name)
+        public void Hire(Employee newEmployee, string title)
         {
-            Employees.Add(name);
+            EmployeeList.Add(newEmployee);
+            newEmployee.Title = title;
+            newEmployee.StartDate = DateTime.Now;
+
         }
         // Create a method that allows a caller to remove an employee
         public void Fire(string name)
         {
-            if (Employees.Contains(name))
-            {
-                Employees.Remove(name);
-            }
-            else
-            {
-                Console.WriteLine($"{name} doesn't even work here");
-            }
+            EmployeeList.Remove(EmployeeList.First(employee => employee.Name == name));
         }
         // Create a method that allows a caller to retrieve the list of employees
 
         public void GetEmployees()
         {
             Console.WriteLine($"{Name} employee roster\n-------------------");
-            foreach (var employee in Employees)
+            foreach (var employee in EmployeeList)
             {
-                Console.WriteLine(employee);
+                Console.WriteLine($"{employee.Name} | {employee.Title} | Hire Date: {employee.StartDate}");
             }
             Console.WriteLine("-------------------\n");
         }
